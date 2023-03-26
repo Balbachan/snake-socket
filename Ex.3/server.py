@@ -2,7 +2,7 @@ import socket
 from thread import *
 import sys
 
-def threaded_client(conn):
+def threaded_client(conn, player):
     
     conn.send(str.encode("Conectado."))
     reply = ""
@@ -26,6 +26,13 @@ def threaded_client(conn):
     print("Conexao perdida.")
     conn.close()
 
+# Ler a posicao da cobrinha.
+def read_pos(array):
+
+
+# Definir a posicao da cobrinha.
+def make_pos(array):
+
 
 def main():
     
@@ -42,8 +49,14 @@ def main():
     s.listen(2)
     print("Esperando por conexao. Servidor iniciado.")
 
+    # Posicao das cobrinhas.
+    posCobras = [[160, 210][200, 210]]
+
+    currentPlayer = 0  # Contar quantos jogadores estao conectados.
+
     while True:
         conn, addr = s.accept()
         print(f"Conectado com {addr}.")
 
-        start_new_thread(threaded_client, (conn, ))
+        start_new_thread(threaded_client, (conn, currentPlayer))
+        currentPlayer += 1

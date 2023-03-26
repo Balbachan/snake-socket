@@ -34,28 +34,32 @@ def main():
 
     pygame.init()
 
-    janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT])
-    player = Cobrinha(150, 200, [[150, 200]], 1, 1, 20)
+    janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT]) # Criar tela.
+    player = Cobrinha(150, 200, True, 0, 20, "RIGHT") # Criar player.
 
     # Loop de execucao.
     executando = True
     while executando:
+        
         pygame.time.delay(100)  # simula FPS
+        
+        # Capturar eventos.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 executando = False
 
+        # Definir configuracoes de tela.
         janela.fill(EVERDE)
-
         fonte = pygame.font.Font("nokiafc22.ttf", 20)
-        texto_title = fonte.render("Batalha das Snake", True, CINZA)
+        texto_title = fonte.render("Batalha das Snakes", True, CINZA)
         janela.blit(texto_title, (290, 110))
-
         arquivoDef.grid(TAM_BLOCO, JOGO_HEIGHT, JOGO_WIDTH, janela, CVERDE)
         contorno = pygame.draw.rect(janela, CINZA, (146, 196, 508, 308), 4)
 
+        # Desenhar jogador.
         player.updatePlayer(janela, BRANCO)
 
+        # Atualizar tela.
         pygame.display.update()
 
     pygame.quit()
