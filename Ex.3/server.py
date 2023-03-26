@@ -1,62 +1,61 @@
 import socket
-from thread import *
+from _thread import *
 import sys
 
+server = "localhost"
+port = 24000
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+try:
+    s.bind((server, port))
+except socket.error as e:
+    str(e)
+
+s.listen(2)
+print("Waiting for a connection, Server Started")
+
+def read_pos(str):
+    str = str.split(",")
+    return int(str[0]), int(str[1])
+
+
+def make_pos(tup):
+    return str(tup[0]) + "," + str(tup[1])
+
+pos = [(160, 210),(500, 480)]
+
 def threaded_client(conn, player):
-    
-    conn.send(str.encode("Conectado."))
+    conn.send(str.encode(make_pos(pos[player])))
     reply = ""
     while True:
         try:
-            data = conn.recv(2048)
-            reply = data.decode("utf-8")
+            data = read_pos(conn.recv(2048).decode())
+            pos[player] = data
 
             if not data:
-                print("Desconectado.")
+                print("Disconnected")
                 break
             else:
-                print(f"Recebido: {reply}")
-                print(f"Enviando: {reply}")
+                if player == 1:
+                    reply = pos[0]
+                else:
+                    reply = pos[1]
 
-            conn.sendall(str.encode(reply))
-        
+                print("Received: ", data)
+                print("Sending : ", reply)
+
+            conn.sendall(str.encode(make_pos(reply)))
         except:
             break
 
-    print("Conexao perdida.")
+    print("Lost connection")
     conn.close()
 
-# Ler a posicao da cobrinha.
-def read_pos(array):
+currentPlayer = 0
+while True:
+    conn, addr = s.accept()
+    print("Connected to:", addr)
 
-
-# Definir a posicao da cobrinha.
-def make_pos(array):
-
-
-def main():
-    
-    server = "localhost"
-    port = 24000
-
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    try:
-        s.bind((server, port))
-    except socket.error as e:
-        str(e)
-
-    s.listen(2)
-    print("Esperando por conexao. Servidor iniciado.")
-
-    # Posicao das cobrinhas.
-    posCobras = [[160, 210][200, 210]]
-
-    currentPlayer = 0  # Contar quantos jogadores estao conectados.
-
-    while True:
-        conn, addr = s.accept()
-        print(f"Conectado com {addr}.")
-
-        start_new_thread(threaded_client, (conn, currentPlayer))
-        currentPlayer += 1
+    start_new_thread(threaded_client, (conn, currentPlayer))
+    currentPlayer += 1

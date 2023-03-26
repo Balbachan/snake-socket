@@ -12,9 +12,21 @@ Alunos:
     - Matheus Farias de Oliveira Matsumoto (32138271)
 """
 from cobrinhaClass import Cobrinha
+from network import Network
 import arquivoDef
 import pygame
 import socket
+
+
+# Ler a posicao da cobrinha.
+def read_pos(str):
+    str = str.split(",")
+    return int(str[0]), int(str[1])
+
+# Definir a posicao da cobrinha.
+def make_pos(tup):
+    return str(tup[0]) + "," + str(tup[1])
+
 
 def main():
     
@@ -31,17 +43,26 @@ def main():
     CVERDE = (120, 156, 103)
     EVERDE = (155, 176, 142)
     CINZA = (34, 37, 46)
+    VERMELHO = (182, 45, 87)
 
     pygame.init()
 
+    n = Network()
+    startPos = read_pos(n.getPos())
     janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT]) # Criar tela.
-    player = Cobrinha(150, 200, True, 0, 20, "RIGHT") # Criar player.
+    player = Cobrinha(startPos[0], startPos[1], True, 0, 20, True) # Criar player 1.
+    opponent = Cobrinha(500, 480, True, 0, 20, False) # Criar player 2.
+    clientNumber = 0 # Numero de Clientes
 
     # Loop de execucao.
     executando = True
     while executando:
         
-        pygame.time.delay(100)  # simula FPS
+        pygame.time.delay(60)  # simula FPS
+
+        opponentPos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
+        opponent.body[0][0] = opponentPos[0]
+        opponent.body[0][1] = opponentPos[1]
         
         # Capturar eventos.
         for event in pygame.event.get():
@@ -56,8 +77,9 @@ def main():
         arquivoDef.grid(TAM_BLOCO, JOGO_HEIGHT, JOGO_WIDTH, janela, CVERDE)
         contorno = pygame.draw.rect(janela, CINZA, (146, 196, 508, 308), 4)
 
-        # Desenhar jogador.
+        # Desenhar jogadores.
         player.updatePlayer(janela, BRANCO)
+        opponent.updatePlayer(janela, VERMELHO)
 
         # Atualizar tela.
         pygame.display.update()
