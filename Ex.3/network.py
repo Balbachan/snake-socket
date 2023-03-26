@@ -7,8 +7,10 @@ class Network:
         self.server = "localhost"
         self.port = 24000
         self.addr = (self.server, self.port)
-        self.id = self.connect()
-        print(self.id)
+        self.pos = self.connect()
+
+    def getPos(self):
+        return self.pos
 
     def connect(self):
         try:
