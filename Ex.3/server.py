@@ -4,6 +4,7 @@ import sys
 
 def threaded_client(conn):
     
+    conn.send(str.encode("Conectado."))
     reply = ""
     while True:
         try:
