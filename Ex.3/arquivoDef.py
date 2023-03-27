@@ -7,3 +7,4 @@ def grid(tam_bloco, tam_comprimento, tam_altura, janela_utilizada, cor):
             rect = pygame.Rect((x + 150), (y + 200), tam_bloco, tam_bloco)
             pygame.draw.rect(janela_utilizada, cor, rect, 0)
 
+

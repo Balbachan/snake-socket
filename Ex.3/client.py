@@ -12,6 +12,8 @@ Alunos:
     - Matheus Farias de Oliveira Matsumoto (32138271)
 """
 from cobrinhaClass import Cobrinha
+from comidaClass import Comida
+from math import dist
 from network import Network
 import arquivoDef
 import pygame
@@ -23,13 +25,13 @@ def read_pos(str):
     str = str.split(",")
     return int(str[0]), int(str[1])
 
+
 # Definir a posicao da cobrinha.
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
 
 def main():
-    
     # Definicao da janela.
     JANELA_HEIGHT: int = 600
     JANELA_WIDTH: int = 800
@@ -49,21 +51,23 @@ def main():
 
     n = Network()
     startPos = read_pos(n.getPos())
-    janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT]) # Criar tela.
-    player = Cobrinha(startPos[0], startPos[1], True, 0, 20, True) # Criar player 1.
-    opponent = Cobrinha(500, 480, True, 0, 20, False) # Criar player 2.
-    clientNumber = 0 # Numero de Clientes
+    janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT])  # Criar tela.
+    player = Cobrinha(150, 200, True, 0, TAM_BLOCO, True)  # Criar player 1. startPos[0], startPos[1]
+    # opponent = Cobrinha(500, 480, True, 0, TAM_BLOCO, False)  # Criar player 2.
+    comida = Comida(0, 0)  # Cria comidinha
+    comida.escolherPos()  # Randomiza a localização da comidinha
+    clientNumber = 0  # Numero de Clientes
 
     # Loop de execucao.
     executando = True
     while executando:
-        
-        pygame.time.delay(60)  # simula FPS
 
-        opponentPos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
-        opponent.body[0][0] = opponentPos[0]
-        opponent.body[0][1] = opponentPos[1]
-        
+        pygame.time.delay(80)  # simula FPS
+
+        # opponentPos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
+        # opponent.body[0][0] = opponentPos[0]
+        # opponent.body[0][1] = opponentPos[1]
+
         # Capturar eventos.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -78,12 +82,16 @@ def main():
         contorno = pygame.draw.rect(janela, CINZA, (146, 196, 508, 308), 4)
 
         # Desenhar jogadores.
-        player.updatePlayer(janela, BRANCO)
-        opponent.updatePlayer(janela, VERMELHO)
+        player.updatePlayer(janela, BRANCO, comida)
+        # opponent.updatePlayer(janela, VERMELHO)
+
+        # Desenhar comida
+        comida.drawComida(janela, VERMELHO)
 
         # Atualizar tela.
         pygame.display.update()
 
     pygame.quit()
+
 
 main()

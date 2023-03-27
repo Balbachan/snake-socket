@@ -23,7 +23,7 @@ def read_pos(str):
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
-pos = [(160, 210),(500, 480)]
+pos = [(150, 200),(630, 480)]
 
 def threaded_client(conn, player):
     conn.send(str.encode(make_pos(pos[player])))
