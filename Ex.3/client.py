@@ -52,8 +52,8 @@ def main():
     n = Network()
     startPos = read_pos(n.getPos())
     janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT])  # Criar tela.
-    player = Cobrinha(150, 200, True, 0, TAM_BLOCO, True)  # Criar player 1. startPos[0], startPos[1]
-    # opponent = Cobrinha(500, 480, True, 0, TAM_BLOCO, False)  # Criar player 2.
+    player = Cobrinha(150, 200, True, 0, TAM_BLOCO, False)  # Criar player 1. startPos[0], startPos[1]
+    opponent = Cobrinha(630, 200, True, 0, TAM_BLOCO, True)  # Criar player 2.
     comida = Comida(0, 0)  # Cria comidinha
     comida.escolherPos()  # Randomiza a localização da comidinha
     clientNumber = 0  # Numero de Clientes
@@ -83,7 +83,7 @@ def main():
 
         # Desenhar jogadores.
         player.updatePlayer(janela, BRANCO, comida)
-        # opponent.updatePlayer(janela, VERMELHO)
+        opponent.updatePlayer(janela, VERMELHO, comida)
 
         # Desenhar comida
         comida.drawComida(janela, VERMELHO)

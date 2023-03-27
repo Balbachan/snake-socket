@@ -17,8 +17,8 @@ class Cobrinha:
         self.drawPlayer(janela, cor)
         self.comer(Comida)
 
-    def updateOpponent(self, janela, cor, nextX, nextY):  # dúvida
-        pass
+    # def updateOpponent(self, janela, cor, nextX, nextY):  # dúvida
+    #     pass
 
     def drawPlayer(self, janela, cor):
         for n in range(len(self.body)):
