@@ -81,3 +81,9 @@ class Cobrinha:
             self.crescer()
             Comida.escolherPos()
 
+    def bateCobra(self, outroPlayer):
+        for i in range(len(outroPlayer.body)):
+            colide = dist(self.body[0], outroPlayer.body[i])
+            if colide <= 0.1:
+                print("morreu ;(")
+                return
