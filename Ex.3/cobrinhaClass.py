@@ -17,8 +17,23 @@ class Cobrinha:
         self.drawPlayer(janela, cor)
         self.comer(Comida)
 
-    # def updateOpponent(self, janela, cor, nextX, nextY):  # dúvida
-    #     pass
+    def updateOpponent(self, janela, cor, nextX, nextY):
+        posXAnt: int = 0
+        posYAnt: int = 0
+        print(f"Body opponent: {self.body}")
+        print(f"nextX: {nextX} ; nextY: {nextY}")
+        if (nextX != self.body[0][0]) or (nextY != self.body[0][1]):
+            for n in range(len(self.body) - 1, 0, -1):
+                posXAnt = self.body[n - 1][0]
+                posYAnt = self.body[n - 1][1]
+                self.body[n][0] = posXAnt
+                self.body[n][1] = posYAnt
+            self.body[0][0] = nextX
+            self.body[0][1] = nextY
+        self.drawPlayer(janela, cor)
+
+    def updateComida(self, Comida):
+        pass
 
     def drawPlayer(self, janela, cor):
         for n in range(len(self.body)):
@@ -34,22 +49,22 @@ class Cobrinha:
             if seta[pygame.K_LEFT]:
                 if self.limitarPos(self.body[0][0] - self.velocidade, self.body[0][1]) == True:
                     self.updateTail()
-                    self.body[0][0] -= 20
+                    self.body[0][0] -= self.velocidade
 
             if seta[pygame.K_RIGHT]:
                 if self.limitarPos(self.body[0][0] + self.velocidade, self.body[0][1]) == True:
                     self.updateTail()
-                    self.body[0][0] += 20
+                    self.body[0][0] += self.velocidade
 
             if seta[pygame.K_UP]:
                 if self.limitarPos(self.body[0][0], self.body[0][1] - self.velocidade) == True:
                     self.updateTail()
-                    self.body[0][1] -= 20
+                    self.body[0][1] -= self.velocidade
 
             if seta[pygame.K_DOWN]:
                 if self.limitarPos(self.body[0][0], self.body[0][1] + self.velocidade) == True:
                     self.updateTail()
-                    self.body[0][1] += 20
+                    self.body[0][1] += self.velocidade
 
     def updateTail(self):
         for n in range(len(self.body) - 1, 0, -1):

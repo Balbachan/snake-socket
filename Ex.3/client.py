@@ -13,7 +13,6 @@ Alunos:
 """
 from cobrinhaClass import Cobrinha
 from comidaClass import Comida
-from math import dist
 from network import Network
 import arquivoDef
 import pygame
@@ -54,8 +53,8 @@ def main():
     n = Network()
     startPos = read_pos(n.getPos())
     janela = pygame.display.set_mode([JANELA_WIDTH, JANELA_HEIGHT])  # Criar tela.
-    player1 = Cobrinha(startPos[0], startPos[1], True, 0, TAM_BLOCO, True)  # Criar player 1. startPos[0], startPos[1]
-    player2 = Cobrinha(500, 480, True, 0, TAM_BLOCO, False)  # Criar player 2.
+    player = Cobrinha(startPos[0], startPos[1], True, 0, TAM_BLOCO, True)  # Criar player 1. startPos[0], startPos[1]
+    opponent = Cobrinha(500, 480, True, 0, TAM_BLOCO, False)  # Criar player 2.
     comida = Comida(0, 0)  # Cria comidinha
     comida.escolherPos()  # Randomiza a localização da comidinha
     clientNumber = 0  # Numero de Clientes
@@ -65,9 +64,7 @@ def main():
     while executando:
 
         pygame.time.delay(80)  # simula FPS
-        player2Pos = read_pos(n.send(make_pos((player2.body[0][0], player2.body[0][1]))))
-        player2.body[0][0] = player2Pos[0]
-        player2.body[0][1] = player2Pos[1]
+        opponent2Pos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
 
         # Capturar eventos.
         for event in pygame.event.get():
@@ -83,9 +80,9 @@ def main():
         contorno = pygame.draw.rect(janela, CINZA, (146, 196, 508, 308), 4)
 
         # Desenhar jogadores.
-        player1.updatePlayer(janela, COBRA1, comida)
-        player2.updatePlayer(janela, COBRA2, comida)
-        player1.bateCobra(player2)
+        player.updatePlayer(janela, COBRA1, comida)
+        opponent.updateOpponent(janela, COBRA2, opponent2Pos[0], opponent2Pos[1])
+        player.bateCobra(opponent)
 
         # Desenhar comida
         comida.drawComida(janela, VERMELHO)
