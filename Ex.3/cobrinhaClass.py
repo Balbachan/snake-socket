@@ -1,5 +1,4 @@
 from math import dist
-from comidaClass import Comida
 import pygame
 
 
@@ -73,6 +72,7 @@ class Cobrinha:
             self.body[n][0] = posXAnt
             self.body[n][1] = posYAnt
 
+    # Limita
     def limitarPos(self, posX, posY):
         if posY < 200:
             return False
@@ -90,12 +90,14 @@ class Cobrinha:
         posHead = self.body[0]
         self.body.append([posHead[0] + len(self.body) * 20, posHead[1]])
 
+    # Quando há colisão entre cobra e comida, a comida escolhe outro lugar
     def comer(self, Comida):
         colide = dist(self.body[0], Comida.posComida[0])
         if colide < 0.1:
             self.crescer()
             Comida.escolherPos()
 
+    # Identifica se houve colisão entre as cobras
     def bateCobra(self, outroPlayer):
         for i in range(len(outroPlayer.body)):
             colide = dist(self.body[0], outroPlayer.body[i])

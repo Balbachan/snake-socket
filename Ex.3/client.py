@@ -16,7 +16,6 @@ from comidaClass import Comida
 from network import Network
 import arquivoDef
 import pygame
-import socket
 
 
 # Ler a posicao da cobrinha.
@@ -56,15 +55,16 @@ def main():
     player = Cobrinha(startPos[0], startPos[1], True, 0, TAM_BLOCO, True)  # Criar player 1. startPos[0], startPos[1]
     opponent = Cobrinha(500, 480, True, 0, TAM_BLOCO, False)  # Criar player 2.
     comida = Comida(0, 0)  # Cria comidinha
-    comida.escolherPos()  # Randomiza a localização da comidinha
-    clientNumber = 0  # Numero de Clientes
+    clientNumber = 0  # Numero do Cliente
 
     # Loop de execucao.
     executando = True
     while executando:
 
-        pygame.time.delay(80)  # simula FPS
-        opponent2Pos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
+        pygame.time.delay(100)  # simula FPS
+
+        comidinhaPos = read_pos(n.send(make_pos((comida.posComida[0][0], comida.posComida[0][1]))))
+        opponentPos = read_pos(n.send(make_pos((player.body[0][0], player.body[0][1]))))
 
         # Capturar eventos.
         for event in pygame.event.get():
@@ -81,7 +81,8 @@ def main():
 
         # Desenhar jogadores.
         player.updatePlayer(janela, COBRA1, comida)
-        opponent.updateOpponent(janela, COBRA2, opponent2Pos[0], opponent2Pos[1])
+        opponent.updateOpponent(janela, COBRA2, opponentPos[0], opponentPos[1])
+
         player.bateCobra(opponent)
 
         # Desenhar comida

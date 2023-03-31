@@ -1,6 +1,6 @@
 import socket
 from _thread import *
-import sys
+import comidaClass
 
 server = "localhost"
 port = 24000
@@ -26,9 +26,10 @@ def make_pos(tup):
 
 
 pos = [(160, 210), (500, 480)]
+posComida = [(0, 0)]
 
 
-def threaded_client(conn, player):
+def threaded_client(conn, player, comida):
     conn.send(str.encode(make_pos(pos[player])))
     reply = ""
     while True:
@@ -36,7 +37,7 @@ def threaded_client(conn, player):
             data = read_pos(conn.recv(2048).decode())
             pos[player] = data
 
-            if not data:
+            if data is not None:
                 print("Disconnected")
                 break
             else:
@@ -47,6 +48,8 @@ def threaded_client(conn, player):
 
                 print("Received: ", data)
                 print("Sending : ", reply)
+
+
 
             conn.sendall(str.encode(make_pos(reply)))
         except:

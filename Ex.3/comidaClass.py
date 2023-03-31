@@ -17,3 +17,8 @@ class Comida:
     def drawComida(self, janela, cor):
         pygame.draw.rect(janela, cor, (self.posComida[0][0], self.posComida[0][1], 20, 20), 0)
 
+    # def uptadeComida(self):
+        
+
+
+

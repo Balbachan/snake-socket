@@ -1,9 +1,22 @@
+"""
+Universidade Prebisteriana Mackenzie
+Faculdade de Computacao e Informatica (FCI)
+Ciência da Computação
+Redes de Computadores
+Prof. Bruno Rodrigues
+
+Batalha de Snakes
+Turma 05G
+Alunos:
+    - Laura C. Balbachan dos Santos (32173008)
+    - Matheus Farias de Oliveira Matsumoto (32138271)
+"""
 import socket
 
 def main():
     
     host = 'localhost'
-    port = 24000
+    port = 32173
     tamanho_buffer = 1024
     rodando = True
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="25819c3b-c635-4660-9071-1851005e195c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ClienteChatTCP.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClienteChatTCP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex.3/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex.3/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex.3/cobrinhaClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex.3/cobrinhaClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex.3/comidaClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex.3/comidaClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex.3/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex.3/server.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NnSovQIqqrOn2S7b6h1YmjgFPb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/balba/OneDrive/Área de Trabalho/GitHub/Faculdade/snake-socket"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="25819c3b-c635-4660-9071-1851005e195c" name="Changes" comment="" />
+      <created>1680298531827</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680298531827</updated>
+    </task>
+    <servers />
+  </component>
+</project>
