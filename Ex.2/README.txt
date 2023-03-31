@@ -9,4 +9,4 @@ Assim que uma das partes faz o envio da palavra "QUIT", a conexão é encerrada.
 
 Linguagem de programação: Python
 Bibliotecas utilizadas: Socket
-Feito na IDLE Vim e também testado pelo Pycharm.
+IDLE: Vim e Pycharm
